@@ -55,4 +55,13 @@ class Market
     end
     too_much_item
   end
+
+  def sorted_item_list
+    item_names = items_at_market.map do |item|
+      item.name
+    end
+    item_names.sort_by do |name|
+      name 
+    end
+  end
 end
