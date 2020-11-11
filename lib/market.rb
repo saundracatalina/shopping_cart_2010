@@ -61,7 +61,21 @@ class Market
       item.name
     end
     item_names.sort_by do |name|
-      name 
+      name
+    end
+  end
+
+  def sell(item, amt)
+    @vendors.any? do |vendor|
+      vendor.check_stock(item) >= amt
+    end
+  end
+
+  def remove_stock(item, amt)
+    if sell(item, amt)
+      @vendors.each do |vendor|
+        vendor.inventory[item] -= amt
+      end
     end
   end
 end
